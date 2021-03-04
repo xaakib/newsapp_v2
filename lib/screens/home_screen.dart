@@ -5,7 +5,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("NewsApp"),
+        elevation: 0,
+        title: Text("News App"),
       ),
     );
   }
