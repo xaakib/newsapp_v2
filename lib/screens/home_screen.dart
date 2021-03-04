@@ -1,6 +1,8 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 
+import 'feeds_screen.dart';
+import 'notification_screen.dart';
 import 'pages/homepage.dart';
 import 'pages/settings_screen.dart';
 
@@ -14,12 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List listOfPage = [
     HomePage(),
-    Container(
-      child: Center(child: Text("HoSeouncemePage")),
-    ),
-    Container(
-      child: Center(child: Text("HomePage")),
-    ),
+    FeedsScreen(),
+    NotificationScreen(),
     SettingsScreen(),
   ];
 
