@@ -29,17 +29,18 @@ class HomePage extends StatelessWidget {
                         size: 30,
                       ),
                     ),
+                    title: Text(
+                      "NewsApp",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
                     actions: [
                       IconButton(
                           icon: Icon(
                             Icons.search,
-                            color: Colors.black,
-                            size: 30,
-                          ),
-                          onPressed: () {}),
-                      IconButton(
-                          icon: Icon(
-                            Icons.shopping_cart,
                             color: Colors.black,
                             size: 30,
                           ),
