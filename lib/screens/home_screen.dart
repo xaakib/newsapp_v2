@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'feeds_screen.dart';
 import 'notification_screen.dart';
@@ -29,31 +30,31 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedIndex: _currentIndex,
         showElevation: true,
         itemCornerRadius: 24,
-        curve: Curves.easeIn,
+        curve: Curves.bounceInOut,
         onItemSelected: (index) => setState(() => _currentIndex = index),
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: Icon(Icons.apps),
+            icon: Icon(Icons.dashboard_outlined),
             title: Text('Home'),
             activeColor: Colors.red,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.people),
-            title: Text('Users'),
-            activeColor: Colors.purpleAccent,
+            icon: Icon(Icons.rss_feed_outlined),
+            title: Text('Feeds'),
+            activeColor: Colors.green,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.message),
+            icon: Icon(Icons.notifications_active_outlined),
             title: Text(
-              'Messages',
+              'Notifications',
             ),
-            activeColor: Colors.pink,
+            activeColor: Colors.blue,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.settings),
+            icon: Icon(Icons.settings_outlined),
             title: Text('Settings'),
             activeColor: Colors.blue,
             inactiveColor: Colors.red,
