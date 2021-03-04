@@ -12,29 +12,17 @@ class HomeScreen extends StatelessWidget {
           Container(
             height: MediaQuery.of(context).size.height,
             child: DefaultTabController(
-              length: 5,
+              length: 6,
 
               //// this is for appbar//
               child: Scaffold(
                   backgroundColor: Colors.white,
                   appBar: AppBar(
                     elevation: 0,
-
-                    // backgroundColor: Color(0xff109618),
                     backgroundColor: Colors.white,
-
-                    title: Image.asset("assets/images/wevaicon.png",
-                        fit: BoxFit.cover, height: 50, width: 70),
-
                     centerTitle: true,
                     leading: IconButton(
-                      onPressed: () {
-                        print("Menu");
-                        showDialog(
-                          context: context,
-                          builder: (conetx) {},
-                        );
-                      },
+                      onPressed: () {},
                       icon: Icon(
                         Icons.menu,
                         color: Colors.black,
@@ -57,7 +45,6 @@ class HomeScreen extends StatelessWidget {
                           ),
                           onPressed: () {}),
                     ],
-
                     bottom: TabBar(
                       isScrollable: true,
                       indicatorColor: Colors.red,
@@ -67,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                         Tab(
                           child: Container(
                             child: Text(
-                              'Home',
+                              'Business',
                               style: TextStyle(
                                   color: Colors.black, fontSize: 18.0),
                             ),
@@ -76,7 +63,16 @@ class HomeScreen extends StatelessWidget {
                         Tab(
                           child: Container(
                             child: Text(
-                              'Salon',
+                              'Entertainment',
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 18.0),
+                            ),
+                          ),
+                        ),
+                        Tab(
+                          child: Container(
+                            child: Text(
+                              'General',
                               style: TextStyle(
                                   color: Colors.black, fontSize: 18.0),
                             ),
@@ -92,28 +88,27 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Tab(
-                          child: Container(
-                            child: Text(
-                              'BOOK',
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 18.0),
-                            ),
+                            child: Container(
+                          child: Text(
+                            'Sports',
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 18.0),
                           ),
-                        ),
+                        )),
                         Tab(
-                          child: Container(
-                            child: Text(
-                              'BOOK',
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 18.0),
-                            ),
+                            child: Container(
+                          child: Text(
+                            'Technology',
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 18.0),
                           ),
-                        ),
+                        )),
                       ],
                     ),
                   ),
                   body: TabBarView(
                     children: <Widget>[
+                      HomePage(),
                       HomePage(),
                       HomePage(),
                       HomePage(),
