@@ -1,140 +1,67 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/homepage.dart';
+import 'pages/settings_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
+
+  List listOfPage = [
+    HomePage(),
+    Container(
+      child: Center(child: Text("HoSeouncemePage")),
+    ),
+    Container(
+      child: Center(child: Text("HomePage")),
+    ),
+    SettingsScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            child: DefaultTabController(
-              length: 6,
-
-              //// this is for appbar//
-              child: Scaffold(
-                  backgroundColor: Colors.white,
-                  appBar: AppBar(
-                    elevation: 0,
-                    backgroundColor: Colors.white,
-                    centerTitle: true,
-                    leading: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.menu,
-                        color: Colors.black,
-                        size: 30,
-                      ),
-                    ),
-                    actions: [
-                      IconButton(
-                          icon: Icon(
-                            Icons.search,
-                            color: Colors.black,
-                            size: 30,
-                          ),
-                          onPressed: () {}),
-                      IconButton(
-                          icon: Icon(
-                            Icons.shopping_cart,
-                            color: Colors.black,
-                            size: 30,
-                          ),
-                          onPressed: () {}),
-                    ],
-                    bottom: TabBar(
-                      isScrollable: true,
-                      indicatorColor: Colors.red,
-                      indicatorWeight: 6.0,
-                      onTap: (index) {},
-                      tabs: <Widget>[
-                        Tab(
-                          child: Container(
-                            child: Text(
-                              'Business',
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 18.0),
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          child: Container(
-                            child: Text(
-                              'Entertainment',
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 18.0),
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          child: Container(
-                            child: Text(
-                              'General',
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 18.0),
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          child: Container(
-                            child: Text(
-                              'Health',
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 18.0),
-                            ),
-                          ),
-                        ),
-                        Tab(
-                            child: Container(
-                          child: Text(
-                            'Sports',
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 18.0),
-                          ),
-                        )),
-                        Tab(
-                            child: Container(
-                          child: Text(
-                            'Technology',
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 18.0),
-                          ),
-                        )),
-                      ],
-                    ),
-                  ),
-                  body: TabBarView(
-                    children: <Widget>[
-                      HomePage(),
-                      HomePage(),
-                      HomePage(),
-                      HomePage(),
-                      HomePage(),
-                      HomePage(),
-                    ],
-                  )),
+      body: listOfPage[_currentIndex],
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: _currentIndex,
+        showElevation: true,
+        itemCornerRadius: 24,
+        curve: Curves.easeIn,
+        onItemSelected: (index) => setState(() => _currentIndex = index),
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+            icon: Icon(Icons.apps),
+            title: Text('Home'),
+            activeColor: Colors.red,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.people),
+            title: Text('Users'),
+            activeColor: Colors.purpleAccent,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.message),
+            title: Text(
+              'Messages',
             ),
+            activeColor: Colors.pink,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.settings),
+            title: Text('Settings'),
+            activeColor: Colors.blue,
+            inactiveColor: Colors.red,
+            textAlign: TextAlign.center,
           ),
         ],
-      ),
-      bottomNavigationBar: CurvedNavigationBar(
-        height: 50,
-        color: Colors.black38,
-        buttonBackgroundColor: Colors.red,
-        backgroundColor: Colors.transparent,
-        items: <Widget>[
-          Icon(Icons.favorite, color: Colors.white, size: 30),
-          Icon(Icons.add_alert, color: Colors.white, size: 30),
-          Icon(Icons.hotel, color: Colors.white, size: 30),
-          Icon(Icons.inbox, color: Colors.white, size: 30),
-          Icon(Icons.menu, color: Colors.white, size: 30),
-        ],
-        onTap: (index) {
-          //Handle button tap
-        },
       ),
     );
   }
