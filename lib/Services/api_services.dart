@@ -4,7 +4,7 @@ import 'package:newsapp_v2/models/articles.dart';
 
 class ApiServices {
   String everthing =
-      "https://newsapi.org/v2/everything?q=bitcoin&apiKey=c5d0829c93794ce3a717ad6f55787aaa";
+      "https://newsapi.org/v2/everything?q=apple&from=2021-03-04&to=2021-03-04&sortBy=popularity&apiKey=c5d0829c93794ce3a717ad6f55787aaa";
   String url =
       "https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=c5d0829c93794ce3a717ad6f55787aaa";
 
