@@ -12,81 +12,93 @@ class _FeedsScreenState extends State<FeedsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        child: FutureBuilder<News>(
-            future: apiServices.getEverything(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                List<Article> list = snapshot.data.articles;
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: FutureBuilder<News>(
+                future: apiServices.getEverything(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    List<Article> list = snapshot.data.articles;
 
-                return ListView.builder(
-                  itemCount: list.length,
-                  itemBuilder: (context, index) {
-                    Article articles = list[index];
+                    return ListView.builder(
+                      itemCount: list.length,
+                      itemBuilder: (context, index) {
+                        Article articles = list[index];
 
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.4,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Column(
-                                children: [
-                                  Image.network(
-                                    articles.urlToImage,
-                                    fit: BoxFit.cover,
-                                    height: 150,
-                                    width: MediaQuery.of(context).size.width,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          articles.title,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: Colors.black,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Divider(
-                                          height: 5,
-                                        ),
-                                        Text(
-                                          articles.description,
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
-                                          maxLines: 4,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        return NewsPost(articles: articles);
+                      },
                     );
-                  },
-                );
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            }),
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                }),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class NewsPost extends StatelessWidget {
+  const NewsPost({
+    Key key,
+    @required this.articles,
+  }) : super(key: key);
+
+  final Article articles;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Card(
+            child: Container(
+              height: 200,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  articles.urlToImage,
+                  fit: BoxFit.cover,
+                  height: 150,
+                  width: MediaQuery.of(context).size.width,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  articles.title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Divider(
+                  height: 5,
+                ),
+                Text(
+                  articles.description,
+                  style: TextStyle(fontSize: 14, color: Colors.black),
+                  overflow: TextOverflow.clip,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
