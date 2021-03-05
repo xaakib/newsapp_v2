@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp_v2/Services/api_services.dart';
 import 'package:newsapp_v2/models/articles.dart';
+import 'package:newsapp_v2/screens/Details_screen.dart';
 import 'package:newsapp_v2/widgets/poster_screen.dart';
 
 class FeedsScreen extends StatefulWidget {
@@ -28,7 +29,9 @@ class _FeedsScreenState extends State<FeedsScreen> {
                       itemBuilder: (context, index) {
                         Article articles = list[index];
 
-                        return NewsPost(articles: articles);
+                        return NewsPost(
+                          articles: articles,
+                        );
                       },
                     );
                   } else {
