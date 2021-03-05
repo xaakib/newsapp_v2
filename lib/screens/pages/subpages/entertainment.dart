@@ -10,7 +10,7 @@ class _EntertainmentState extends State<Entertainment> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("Entertenment"),
+        child: Text("Enter"),
       ),
     );
   }
